@@ -4417,6 +4417,7 @@ L["Recent"] = true
 L["Recipe"] = true
 L["Recipe "] = true
 L["Recipe Window"] = true
+L["Recipe: "] = true
 L["Recipe: %s\n%s%s by:"] = true
 L["Recipe: %s\n%s%s.%s"] = true
 L["Recipe: %s\nA world drop%s. Also try the Auction House."] = true
