@@ -51,8 +51,10 @@ view files and the window share.
   `ns.FEATURES.training`; the Trainer Popup card's switch belongs to the QoL store, and QoL's `Questing/Trainer.lua` declares
   that card on this page, so it goes when QoL is off.
 - TrainingData rows are `{ level, spellID, cost, flags }` in level order; cost is the trainer's base
-  price in copper, or 0 when Wowhead has none (the rogue's poisons and a few new spells), which reads
-  "At the trainer". Flags: `quest` (taught by a quest), `needs` (the rank to learn first), `talent`
+  price in copper: what its window asked, or What's Training's list of it (MIT), for a class whose
+  trainer we have read (`Tools/data/trainer_prices.json`), else Wowhead's, which predates Forever's
+  launch prices, or 0 when Wowhead has none (a few new spells), which reads "At the trainer".
+  Flags: `quest` (taught by a quest), `needs` (the rank to learn first), `talent`
   (the talent it needs), `races` (the races that learn it), `replacedBy` (the level 60 book's rank that
   replaces it). The trainer window updates a price to what it actually asked.
 - Prices are kept per character, by GUID (`Shared.CharacterData`): a trainer's price carries that
@@ -100,6 +102,8 @@ view files and the window share.
   position (in an instance), one in your faction's capital, then a shared one.
 - An imported build is data, never run: its class must have a tree here, its points must pass the
   rules, and its name loses escape codes and line breaks and is cut to 40 letters.
+- The Import box takes at most 4,000 letters (`PASTE_MAX`): pasting a long string, such as a profile,
+  into an edit box hangs the game. The longest build code the addon can write is under 1,000.
 - A build is kept by a number of its own, given the first time it is asked for, or a built-in one by
   its place in the data: names repeat, so they cannot be keys. Committing talents fires the talent
   events that start a followed build's learning again, so learning is guarded while it runs.
